@@ -1,0 +1,141 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            url: "http://humorhuman.com/stuff/amazon/ranksjson.php",
+            dataType: "json",
+            success: function(respObj, message, Obj) {
+                //console.log(respObj); console.log(message); console.log(Obj);
+                // We get 3 paramaters in ajax sucess function responseObject, success/ failure message and Object
+
+                var myData = respObj;
+                // console.log(myData);
+                var amz_ranks = [];
+                var kim_ranks = [];
+                var bb_ranks = [];
+                var bim_ranks = [];
+                var Dates = [];
+                var t_stamps = [];
+
+                //refine our data here fill up arrays
+
+                $.each(myData, function(index, value) {
+                    amz_ranks.push(parseInt(value.amz_best_seller_rank));
+                    kim_ranks.push(parseInt(value.kin_inf_management));
+                    bb_ranks.push(parseInt(value.books_business));
+                    bim_ranks.push(parseInt(value.books_inf_management));
+                    Dates.push(value.date);
+                    t_stamps.push(value.tstamp);
+                });
+               	console.log();
+               	console.log(kim_ranks);
+               	console.log(bb_ranks);
+               	console.log(bim_ranks);
+               	console.log(t_stamps);
+               	var maxkim_rank = Math.max.apply(Math, kim_ranks);
+               	var maxbb_ranks = Math.max.apply(Math, bb_ranks);
+               	var maxbim_ranks = Math.max.apply(Math, bim_ranks);
+               	$('#rank1').text(maxkim_rank);
+               	$('#rank2').text(maxbb_ranks);
+               	$('#rank3').text(maxbim_ranks);
+               	Highcharts.chart('container_kim_ranks', {
+                    chart: {
+                        zoomType: "xy"
+                    },
+                    title: {
+                        text: "Kindle Info Management Rank"
+                    },
+                    xAxis: {
+                        categories: Dates
+                    },
+
+                    series: [{
+                        data: kim_ranks,
+                        type: 'area'
+                    }]
+
+                });
+                Highcharts.chart('container_bb_ranks', {
+                    chart: {
+                        zoomType: "xy"
+                    },
+                    title: {
+                        text: "books_business Rank"
+                    },
+                    xAxis: {
+                        categories: Dates
+                    },
+
+                    series: [{
+                        data: bb_ranks,
+                        type: 'area'
+                    }]
+
+                });
+                Highcharts.chart('container_bim_ranks', {
+                    chart: {
+                        zoomType: "xy"
+                    },
+                    title: {
+                        text: "books_inf_management Rank"
+                    },
+                    xAxis: {
+                        categories: Dates
+                    },
+
+                    series: [{
+                        data: bim_ranks,
+                        type: 'area'
+                    }]
+
+                });
+                Highcharts.chart('container_amz_ranks', {
+                    chart: {
+                        zoomType: "xy"
+                    },
+                    title: {
+                        text: "Amazon Best Seller Rank"
+                    },
+                    xAxis: {
+                        categories: Dates
+                    },
+
+                    series: [{
+                        data: amz_ranks,
+                        type: 'area'
+                    }]
+
+                });
+
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+	<div>
+	<div id="container_kim_ranks" style="float: left; width: 25%;" ></div>
+	<div id="container_bb_ranks" style="float: left; width: 25%;" ></div>
+	<div id="container_bim_ranks" style="float: left; width: 25%;" ></div>
+	<div style="float: left; width: 25%; background-color: #9DC7F1;">
+			<div id="" style="float: left; font-family: 'Anton', sans-serif; padding-top: .6cm;">Best Ranks</div>
+			<div id="rank1" style="float: left; font-family: 'Anton', sans-serif; font-size: 3em; padding-right: 0.5cm; padding-left: .2cm;"  ></div>
+			<div id="rank2" style="float: left; font-family: 'Anton', sans-serif; font-size: 3em; padding-right: 0.4cm;"  ></div>
+			<div id="rank3" style="float: left; font-family: 'Anton', sans-serif; font-size: 3em; padding-right: 0.5cm;"  ></div>
+			<div id="" style="float: left; font-family: 'Anton', sans-serif; font-size: 1em; padding-left: 2.3cm;">Kindle</div>
+			<div id="" style="float: left; font-family: 'Anton', sans-serif; font-size: 1em; padding-left: 1.2cm;">Business</div>
+			<div id="" style="float: left; font-family: 'Anton', sans-serif; font-size: 1em; padding-left: .6cm;">Management</div>
+
+	</div>
+    </div>
+    <div id="container_amz_ranks" style="width: 100%; height: 50%" ></div>
+
+</body>
+
+</html>
