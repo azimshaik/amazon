@@ -37,9 +37,9 @@
                	console.log(bb_ranks);
                	console.log(bim_ranks);
                	console.log(t_stamps);
-               	var maxkim_rank = Math.max.apply(Math, kim_ranks);
-               	var maxbb_ranks = Math.max.apply(Math, bb_ranks);
-               	var maxbim_ranks = Math.max.apply(Math, bim_ranks);
+               	var maxkim_rank = Math.min.apply(Math, kim_ranks);
+               	var maxbb_ranks = Math.min.apply(Math, bb_ranks);
+               	var maxbim_ranks = Math.min.apply(Math, bim_ranks);
                	$('#rank1').text(maxkim_rank);
                	$('#rank2').text(maxbb_ranks);
                	$('#rank3').text(maxbim_ranks);

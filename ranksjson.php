@@ -11,8 +11,8 @@ if (mysqli_connect_errno())
 }
  
 // This SQL statement selects ALL from the table 'Locations'
-$sql = "SELECT * FROM `kindleranks` WHERE 1";
- 
+$sql1 = "SELECT * FROM `kindleranks` WHERE 1";
+$sql = "SELECT * FROM `kindleranks` WHERE `id` not in (1,2,3,4,5,6,7,8,9)"; 
 // Check if there are results
 if ($result = mysqli_query($con, $sql))
 {
