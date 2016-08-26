@@ -51,11 +51,16 @@
                     title: {
                         text: "Kindle Store >Kindle eBooks >Business & Money >Industries >Information Management"
                     },
+		    yAxis: {
+			title:{
+				text: 'Ranks'
+			}
+		    },
                     xAxis: {
                         categories: Dates
                     },
                     series: [{
-                        name: 'dates',
+                        name: 'Date',
 			data: kim_ranks,
                         type: 'area'
                     }]
@@ -68,10 +73,16 @@
                     title: {
                         text: " Books >Reference >Encyclopedias & Subject Guides >Business"
                     },
+		    yAxis: {
+                        title:{
+                                text: 'Ranks'
+                        }
+                    },
                     xAxis: {
                         categories: Dates
                     },
                     series: [{
+			name: 'Date',
                         data: bb_ranks,
                         type: 'area'
                     }]
@@ -83,10 +94,16 @@
                     title: {
                         text: "Kindle Store >Kindle eBooks >Business & Money >Technology"
                     },
+		    yAxis: {
+                        title:{
+                                text: 'Ranks'
+                        }
+                    },
                     xAxis: {
                         categories: Dates
                     },
                     series: [{
+			name: 'Date',
                         data: bim_ranks,
                         type: 'area'
                     }]
@@ -101,7 +118,13 @@
                     xAxis: {
                         categories: Dates
                     },
+		    yAxis: {
+                        title:{
+                                text: 'Ranks'
+                        }
+                    },
                     series: [{
+			name: 'Date',
                         data: amz_ranks,
                         type: 'area'
                     }]
