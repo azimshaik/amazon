@@ -7,6 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="http://code.jugal.me/js/jugalsLib.js" ></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script type="text/javascript">
         $.ajax({
@@ -54,9 +55,11 @@
                         categories: Dates
                     },
                     series: [{
-                        data: kim_ranks,
+                        name: 'dates',
+			data: kim_ranks,
                         type: 'area'
                     }]
+			
                 });
                 Highcharts.chart('container_bb_ranks', {
                     chart: {
@@ -145,9 +148,10 @@
 </nav>
 <div class="container">
 <div class="row">
-	<div class="col-md-4">4</div>
-	<div class="col-md-4">4</div>
-	<div class="col-md-4">4</div>
+	<div id="container_kim_ranks" class="col-md-4"></div>
+	<div id="container_bb_ranks"  class="col-md-4"></div>
+	<div id="container_bim_ranks" class="col-md-4"></div>
+	<div id="container_amz_ranks" class="col-md-12"></div>
 <div>
 <h1>This is a Heading</h1>
 <p>This is a paragraph.</p>
