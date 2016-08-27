@@ -42,7 +42,7 @@
                	var minbb_ranks = Math.min.apply(Math, bb_ranks);
                	var minbim_ranks = Math.min.apply(Math, bim_ranks);
 		
-               	$('#rank1').text(minkim_rank);
+               	$('#rank1').append(minkim_rank);
                	$('#rank2').append(minbb_ranks);
                	$('#rank3').append(minbim_ranks);
                	Highcharts.chart('container_kim_ranks', {
@@ -50,11 +50,11 @@
                         zoomType: "xy"
                     },
                     title: {
-                        text: "Kindle Store >Kindle eBooks >Business & Money >Industries >Information Management"
+                        text: ""
                     },
 		    yAxis: {
 			title:{
-				text: 'Ranks'
+				text: 'Ranks(Avg/Day)'
 			}
 		    },
                     xAxis: {
@@ -76,7 +76,7 @@
                     },
 		    yAxis: {
                         title:{
-                                text: 'Ranks'
+                                text: 'Ranks(Avg/Day)'
                         }
                     },
                     xAxis: {
@@ -93,11 +93,11 @@
                         zoomType: "xy"
                     },
                     title: {
-                        text: "Kindle Store >Kindle eBooks >Business & Money >Technology"
+                        text: ""
                     },
 		    yAxis: {
                         title:{
-                                text: 'Ranks'
+                                text: 'Ranks(Avg/Day)'
                         }
                     },
                     xAxis: {
@@ -172,7 +172,14 @@
 </nav>
 <div class="container">
 <div class="row">
-	<div id="container_kim_ranks" style="background: #73AD21; border: 2px solid #73AD21;"  class="col-md-4"></div>
+	<div id="" style=""  class="col-md-4">
+		<div>
+                        <h3 id="rank1">Best#</h3>
+                        <h5>Kindle Store >Kindle eBooks >Business & Money >Industries >Information Management</h5>
+                </div>
+                <div id="container_kim_ranks">
+                </div>
+	</div>
 	<div id=""  class="col-md-4">
 		<div>
 			<h3 id="rank2">Best#</h3>
@@ -184,7 +191,7 @@
 	<div id="" class="col-md-4">
 		<div>
                         <h3 id="rank3">Best#</h3>
-                        <h5>Books >Reference >Encyclopedias & Subject Guides >Business</h5>
+                        <h5>Kindle Store >Kindle eBooks >Business & Money >Technology</h5>
                 </div>
                 <div id="container_bim_ranks">
                 </div>
