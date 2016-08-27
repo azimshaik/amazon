@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="http://code.jugal.me/js/jugalsLib.js" ></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            url: "http://humorhuman.com/stuff/amazon/rankstodayjson.php",
+            dataType: "json",
+            success: function(respObj, message, Obj) {
+                //console.log(respObj); console.log(message); console.log(Obj);
+                // We get 3 paramaters in ajax sucess function responseObject, success/ failure message and Object
+                var myData = respObj;
+                // console.log(myData);
+                var amz_ranks = [];
+                var kim_ranks = [];
+                var bb_ranks = [];
+                var bim_ranks = [];
+                var Dates = [];
+                var t_stamps = [];
+                //refine our data here fill up arrays
+                $.each(myData, function(index, value) {
+                    amz_ranks.push(parseInt(value.amz_best_seller_rank));
+                    kim_ranks.push(parseInt(value.kin_inf_management));
+                    bb_ranks.push(parseInt(value.books_business));
+                    bim_ranks.push(parseInt(value.books_inf_management));
+                    Dates.push(value.date);
+                    t_stamps.push(value.tstamp);
+                });
+               	console.log();
+               	console.log(kim_ranks);
+               	console.log(bb_ranks);
+               	console.log(bim_ranks);
+               	console.log(t_stamps);
+               	var maxkim_rank = Math.min.apply(Math, kim_ranks);
+               	var maxbb_ranks = Math.min.apply(Math, bb_ranks);
+               	var maxbim_ranks = Math.min.apply(Math, bim_ranks);
+               	$('#rank1').text(maxkim_rank);
+               	$('#rank2').text(maxbb_ranks);
+               	$('#rank3').text(maxbim_ranks);
+               	Highcharts.chart('container_kim_ranks', {
+                    chart: {
+                        zoomType: "xy"
+                    },
+                    title: {
+                        text: "Kindle Store >Kindle eBooks >Business & Money >Industries >Information Management"
+                    },
+		    yAxis: {
+			title:{
+				text: 'Ranks'
+			}
+		    },
+                    xAxis: {
+                        categories: Dates
+                    },
+                    series: [{
+                        name: 'Date',
+			data: kim_ranks,
+                        type: 'area'
+                    }]
+			
+                });
+                Highcharts.chart('container_bb_ranks', {
+                    chart: {
+                        zoomType: "xy"
+                    },
+                    title: {
+                        text: " Books >Reference >Encyclopedias & Subject Guides >Business"
+                    },
+		    yAxis: {
+                        title:{
+                                text: 'Ranks'
+                        }
+                    },
+                    xAxis: {
+                        categories: Dates
+                    },
+                    series: [{
+			name: 'Date',
+                        data: bb_ranks,
+                        type: 'area'
+                    }]
+                });
+                Highcharts.chart('container_bim_ranks', {
+                    chart: {
+                        zoomType: "xy"
+                    },
+                    title: {
+                        text: "Kindle Store >Kindle eBooks >Business & Money >Technology"
+                    },
+		    yAxis: {
+                        title:{
+                                text: 'Ranks'
+                        }
+                    },
+                    xAxis: {
+                        categories: Dates
+                    },
+                    series: [{
+			name: 'Date',
+                        data: bim_ranks,
+                        type: 'area'
+                    }]
+                });
+                Highcharts.chart('container_amz_ranks', {
+                    chart: {
+                        zoomType: "xy"
+                    },
+                    title: {
+                        text: "Amazon Best Seller Rank"
+                    },
+                    xAxis: {
+                        categories: Dates
+                    },
+		    yAxis: {
+                        title:{
+                                text: 'Ranks'
+                        }
+                    },
+                    series: [{
+			name: 'Date',
+                        data: amz_ranks,
+                        type: 'area'
+                    }]
+                });
+            }
+        });
+    </script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Page Title</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class"navbar navbar-inverse navbar-fixed-top" style="background-color:black;">
+	<div class="conatainer-fluid">
+		<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".nav-collapse" aria-expanded="false" aria-controls="navbar">
+           	 <span class="sr-only">Toggle navigation</span>
+           		 <span class="icon-bar"></span>
+            		 <span class="icon-bar"></span>
+           		 <span class="icon-bar"></span>
+          	</button>
+		<a class="navbar-brand" style="color:white;" href="#"><bold>HYPER</bold></a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+  	        <ul class="nav navbar-nav navbar-right">
+        	 	<li><a href="visualboot.html" style="color:white;">Home</a></li>
+           	 	<li><a href="today.html" style="color:white;">Today</a></li>
+            		<li><a href="week.html" style="color:white;">Week</a></li>
+            		<li><a href="#" style="color:white;">Help</a></li>
+         	 </ul>
+          	<form class="navbar-form navbar-right">
+            		<input type="text" class="form-control" placeholder="Search...">
+         	</form>
+        	</div>
+	</div>
+</nav>
+<div class="container">
+<div class="row">
+	<div id="container_kim_ranks" class="col-md-4"></div>
+	<div id="container_bb_ranks"  class="col-md-4"></div>
+	<div id="container_bim_ranks" class="col-md-4"></div>
+	<div id="container_amz_ranks" class="col-md-12"></div>
+<div>
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+</div>
+</body>
+</html>
