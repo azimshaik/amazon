@@ -38,12 +38,13 @@
                	console.log(bb_ranks);
                	console.log(bim_ranks);
                	console.log(t_stamps);
-               	var maxkim_rank = Math.min.apply(Math, kim_ranks);
-               	var maxbb_ranks = Math.min.apply(Math, bb_ranks);
-               	var maxbim_ranks = Math.min.apply(Math, bim_ranks);
-               	$('#rank1').text(maxkim_rank);
-               	$('#rank2').text(maxbb_ranks);
-               	$('#rank3').text(maxbim_ranks);
+               	var minkim_rank = Math.min.apply(Math, kim_ranks);
+               	var minbb_ranks = Math.min.apply(Math, bb_ranks);
+               	var minbim_ranks = Math.min.apply(Math, bim_ranks);
+		
+               	$('#rank1').text(minkim_rank);
+               	$('#rank2').append(minbb_ranks);
+               	$('#rank3').append(minbim_ranks);
                	Highcharts.chart('container_kim_ranks', {
                     chart: {
                         zoomType: "xy"
@@ -174,12 +175,20 @@
 	<div id="container_kim_ranks" style="background: #73AD21; border: 2px solid #73AD21;"  class="col-md-4"></div>
 	<div id=""  class="col-md-4">
 		<div>
+			<h3 id="rank2">Best#</h3>
 			<h5>Books >Reference >Encyclopedias & Subject Guides >Business</h5>
 		</div>
 		<div id="container_bb_ranks">
 		</div>
 	</div>
-	<div id="container_bim_ranks" class="col-md-4"></div>
+	<div id="" class="col-md-4">
+		<div>
+                        <h3 id="rank3">Best#</h3>
+                        <h5>Books >Reference >Encyclopedias & Subject Guides >Business</h5>
+                </div>
+                <div id="container_bim_ranks">
+                </div>
+	</div>
 	<div id="performance" class="col-md-12">Performance Comparision</div>
 	<div id="container_amz_ranks" class="col-md-12"></div>
 <div>
